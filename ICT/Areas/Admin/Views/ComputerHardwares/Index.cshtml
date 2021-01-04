@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DataLayer.ComputerHardware>
+
+@{
+    ViewBag.Title = "لیست اجزای تجهیز";
+}
+@*<script src="~/Areas/Admin/Content/js/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#searchComID").change(function () {
+            var a = $("#searchComID").val();
+            $.ajax({
+                url: 'SearchbyComputerID',
+                data: {
+                    comID: a
+                },
+                type: 'POST',
+                success: function (N) {
+                    alert(N)
+                },
+                error: function () { }
+            })
+        })
+    })
+</script>*@
+
+<h2>لیست اجزای تجهیز  @ViewBag.id</h2>
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/ComputerHardwares/Create/@ViewBag.id">افزودن قطعه</a>
+    </p>
+</div>
+<div class="table table-responsive ">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComputerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HardwareID)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>
+                <form action="/Admin/ComputerHardwares/index">
+                    <input type="text" id="searchComID" class="form-control" placeholder="کد تجهیز" name="id" style="background-color:#ececc2;border-color:aliceblue;">
+                </form>
+            </th>
+            <th>
+                <form action="/Admin/ComputerHardwares/index">
+                    <input type="text" class="form-control search" placeholder="مدل سخت افزار" name="hardware" style="background-color:#ececc2;border-color:aliceblue;">
+                </form>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Computer.Computer_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hardware.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.ComputerHardwareID }) |
+                    @Html.ActionLink("نمایش", "Details", new { id = item.ComputerHardwareID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.ComputerHardwareID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DataLayer.Action>
+
+@{
+    ViewBag.Title = "لیست عملیات";
+}
+
+<h2>لیست عملیات</h2>
+<div class="form-group">
+    <a class="btn btn-success" href="/Admin/Actions/Create">فعالیت جدید</a>
+</div>
+
+<div class="table table-responsive table-hover">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.ActionID }) |
+
+                    @Html.ActionLink("حذف", "Delete", new { id = item.ActionID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

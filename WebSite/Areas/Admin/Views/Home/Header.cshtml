@@ -1,0 +1,47 @@
+﻿<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">صفحه اصلی سایت</a>
+    </div>
+    <!-- /.navbar-header -->
+    <ul class="nav navbar-top-links navbar-left">
+        @*@Html.Action("ContactNotRead", "Home")
+            @Html.Action("ContactNotReply", "Home")*@
+        @*@Html.Action("Comment", "Home")*@
+        @Html.Action("Task", "Home")
+
+        <!-- /.dropdown -->
+        @*<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>*@
+            @*<ul class="dropdown-menu dropdown-user">*@
+                @*<li>
+                    <a href="/UserPanel/Account"><i class="fa fa-user fa-fw"></i> پروفایل کاربر</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gear fa-fw"></i> تنظیمات</a>
+                </li>
+                <li class="divider"></li>*@
+                <li>
+                    <a href="/LogOff"><i class="fa fa-sign-out fa-fw"></i> خروج</a>
+                </li>
+            @*</ul>*@
+            <!-- /.dropdown-user -->
+        @*</li>*@
+        <!-- /.dropdown -->
+    </ul>
+
+
+    <!-- /.navbar-top-links -->
+    @Html.Action("Sidbar", "Home")
+
+    <!-- /.navbar-static-side -->
+</nav>
+
+

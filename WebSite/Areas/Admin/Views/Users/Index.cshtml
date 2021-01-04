@@ -1,0 +1,143 @@
+﻿@model IEnumerable<DataLayer.User>
+
+@{
+    ViewBag.Title = "لیست کاربران";
+    int i = 1;
+}
+
+<h2>لیست کاربران</h2>
+
+
+<div class="">
+    <form action="/Admin/Users/searchByName">
+        <input type="text" class="form-control search" placeholder="نام یا کدپرسنلی" name="uname" style="background-color:#ececc2;border-color:aliceblue;">
+        <input type="hidden" value="جستجو" />
+    </form>
+</div>
+<br />
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/Users/Create">کاربر جدید</a>
+    </p>
+</div>
+
+
+
+<div class="table-responsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                ردیف
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.PersonalImage)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role.RoleTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @i
+                </td>
+                @*<td>
+                      <img src="/Content/image/@item.PersonalImage" alt="@item.PersonalImage" class="img-thumbnail" />
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.RoleTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DomainUserName)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.userID }) |
+                    @Html.ActionLink("نمایش", "Details", new { id = item.userID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.userID })
+                </td>
+            </tr>
+            i++;
+        }
+
+    </table>
+</div>
+
+
+<form action="/Admin/users/index" id="filterForm">
+    <input type="hidden" value="@ViewBag.pageId" id="pageId" name="pageId" />
+
+</form>
+@if (ViewBag.PageCount > 1 && ViewBag.PageCount <= 4)
+{
+    <div class="justify-content-center container">
+        <ul class="pagination">
+            @for (int j = 1; j <= ViewBag.PageCount; j++)
+            {
+                <li><a onclick="changePage(@j)">@j</a></li>
+            }
+
+        </ul>
+    </div>
+}
+else if (ViewBag.PageCount > 4)
+{
+    <div class="container ">
+        <ul class="pagination">
+            <li><a onclick="changePage(1)">صفحه اول</a></li>
+            @for (int j = 3; j > 0; j--)
+            {
+                if (ViewBag.pageId - j > 1)
+                {
+                    <li><a onclick="changePage(@(ViewBag.pageId - j))">@(ViewBag.pageId - j)</a></li>
+                }
+            }
+            @if (ViewBag.pageId != 1 && ViewBag.pageId != ViewBag.PageCount)
+            {
+                <li><a disabled onclick="changePage(@ViewBag.pageId)">@ViewBag.pageId</a></li>
+            }
+            @for (int j = 1; j <= 3; j++)
+            {
+                if (ViewBag.pageId + j < ViewBag.PageCount)
+                {
+                    <li><a onclick="changePage(@(ViewBag.pageId + j))">@(ViewBag.pageId + j)</a></li>
+                }
+            }
+            <li><a onclick="changePage(@ViewBag.PageCount)">صفحه آخر</a></li>
+        </ul>
+    </div>
+}
+<script>
+    function changePage(pageId) {
+        $("#pageId").val(pageId);
+        $("#filterForm").submit();
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DataLayer.Role>
+
+@{
+    ViewBag.Title = "نقش ها";
+}
+
+<h2>نقش ها</h2>
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/Roles/Create">نقش جدید</a>
+
+    </p>
+</div>
+
+<div class="table table-responsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.RoleID }) |
+                    @*@Html.ActionLink("نمایش", "Details", new { id=item.RoleID }) |*@
+                    @Html.ActionLink("حذف", "Delete", new { id = item.RoleID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

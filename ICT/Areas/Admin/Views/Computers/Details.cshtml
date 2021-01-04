@@ -1,0 +1,47 @@
+﻿@model DataLayer.Computer
+
+@{
+    ViewBag.Title = "جزییات تجهیز";
+}
+
+    <h2>جزییات تجهیز</h2>
+
+<div>
+ 
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit1.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit1.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmvalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmvalCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Serial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Computer_ID }) 
+ 
+</p>

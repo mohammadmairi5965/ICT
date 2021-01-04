@@ -1,0 +1,100 @@
+﻿@model DataLayer.User
+
+@{
+    ViewBag.Title = "حذف کاربر";
+}
+
+<h2>حذف کاربر</h2>
+
+<h3>آیا از حذف کاربر @Model.UserName  مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiveCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.RoleTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DomainUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DomainUserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

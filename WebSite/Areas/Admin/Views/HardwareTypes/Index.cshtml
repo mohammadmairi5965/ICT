@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DataLayer.HardwareType>
+
+@{
+    ViewBag.Title = "لیست نوع قطعه";
+}
+
+<h2>لیست نوع قطعه</h2>
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/HardwareTypes/Create">نوع قطعه جدید</a>
+    </p>
+</div>
+
+
+<div class="table table-responsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubArea)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubArea)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.HardwareTypeID }) |
+                    @Html.ActionLink("نمایش", "Details", new { id = item.HardwareTypeID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.HardwareTypeID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

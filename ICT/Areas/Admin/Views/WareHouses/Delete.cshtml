@@ -1,0 +1,47 @@
+﻿@model DataLayer.WareHouse
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+    <h4>WareHouse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hardware.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hardware.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,54 @@
+﻿@model DataLayer.InputDetail
+
+@{
+    ViewBag.Title = "حذف قطعه";
+}
+
+<h2>حذف قطعه</h2>
+
+<h3>آیا از حذف قطعه مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hardware.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hardware.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Input.FactorNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Input.FactorNo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

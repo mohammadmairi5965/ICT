@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه واحد ICT - @ViewBag.Title </title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    @Html.Action("Header", "Home")
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+  
+   
+    @Html.Action("CopyRight", "Home")
+
+
+
+
+
+    <script src="/Content/js/bootstrap.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

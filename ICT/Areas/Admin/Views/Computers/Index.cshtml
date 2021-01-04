@@ -1,0 +1,233 @@
+﻿@model IEnumerable<DataLayer.DeliveryComputer>
+
+@{
+    ViewBag.Title = "لیست تجهیزات";
+}
+
+<h2>لیست تجهیزات</h2>
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/Computers/Create"> <i class="glyphicon glyphicon-plus"></i> تجهیز جدید</a>
+    </p>
+</div>
+<div class="table table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                ردیف
+            </th>
+            <th>
+                کد تجهیز
+            </th>
+            <th>
+                نوع
+            </th>
+            <th>
+                واحد
+            </th>
+            <th>
+                کد اموال
+            </th>
+            <th>
+                شماره سریال
+            </th>
+            <th>
+                تحویل گیرنده
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <a class="form-control" onclick="clr()"><i class=" glyphicon glyphicon-repeat"></i> </a>
+            </td>
+            <form action="/Admin/Computers/index" id="filterForm">
+                <input type="hidden" value="@ViewBag.pageId" id="pageId" name="pageId" />
+                <td class="col-md-1">
+                    <input type="text" value="@ViewBag.comid" class="form-control search" placeholder="شماره تجهیز" name="comid" style=" background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td>
+                    <input type="text" value="@ViewBag.typ" class="form-control search" placeholder="نوع تجهیز" name="typ" style="background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td class="col-md-1">
+                    <input type="text" value="@ViewBag.unt" class="form-control search w-auto" placeholder="واحد" name="unt" style="background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td class="col-md-1">
+                    <input type="text" value="@ViewBag.cod" class="form-control search w-auto" placeholder="شماره اموال" name="cod" style="background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td>
+                    <input type="text" value="@ViewBag.sral" class="form-control search w-auto" placeholder="سریال" name="sral" style="background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td>
+                    <input type="text" value="@ViewBag.dlvr" class="form-control search w-auto" placeholder="تحویل گیرنده" name="dlvr" style="background-color:#ececc2;border-color:aliceblue;">
+                </td>
+                <td>
+                    <input class="form-control" type="submit" value="جستجو" />
+                </td>
+                <td>
+                </td>
+
+            </form>
+
+        </tr>
+
+        @{var index = ViewBag.take * (ViewBag.pageId - 1);}
+
+        @foreach (var item in Model)
+        {
+            if (item.Name != null)
+            {
+                <tr style="background-color: #cebcf7;">
+                    <td>
+                        @{index++;}
+                        @index
+                    </td>
+                    <td>
+                        @item.Computer_ID
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.unitTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmvalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("قطعات سیستم", "Index", "ComputerHardwares", new { id = item.Computer_ID }, "") |
+                        @Html.ActionLink("سرویس ها", "Index", "Services", new { comid = item.Computer_ID }, "")|
+                        @if (item.Name == null)
+                        {
+                            <span>
+                                @Html.ActionLink("تحویل ", "direct", "Delivers", new { comid = item.Computer_ID }, new { @class = "deliver bg-dark" })
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @Html.ActionLink("برگشت ", "direct", "Delivers", new { comid = item.Computer_ID }, new { @class = "deliver" })
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.Computer_ID }) |
+                        @Html.ActionLink("نمایش", "Details", new { id = item.Computer_ID }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.Computer_ID })
+
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @{index++;}
+                        @index
+                    </td>
+                    <td>
+                        @item.Computer_ID
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.unitTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmvalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("قطعات سیستم", "Index", "ComputerHardwares", new { id = item.Computer_ID }, "") |
+                        @Html.ActionLink("سرویس ها", "Index", "Services", new { comid = item.Computer_ID }, "")|
+                        @if (item.Name == null)
+                        {
+                            <span>
+                                @Html.ActionLink("تحویل ", "direct", "Delivers", new { comid = item.Computer_ID }, new { @class = "deliver bg-dark" })
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @Html.ActionLink("برگشت ", "direct", "Delivers", new { comid = item.Computer_ID }, new { @class = "deliver" })
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.Computer_ID }) |
+                        @Html.ActionLink("نمایش", "Details", new { id = item.Computer_ID }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.Computer_ID })
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+@if (ViewBag.PageCount > 1 && ViewBag.PageCount <= 4)
+{
+    <div class="justify-content-center container">
+        <ul class="pagination">
+            @for (int j = 1; j <= ViewBag.PageCount; j++)
+            {
+                <li><a onclick="changePage(@j,@ViewBag.comid)">@j</a></li>
+            }
+
+        </ul>
+    </div>
+}
+else if (ViewBag.PageCount > 4)
+{
+    <div class="container ">
+        <ul class="pagination">
+            <li><a onclick="changePage(1,@ViewBag.comid)">صفحه اول</a></li>
+            @for (int i = 3; i > 0; i--)
+            {
+                if (ViewBag.pageId - i > 1)
+                {
+                    <li><a onclick="changePage(@(ViewBag.pageId - i),@ViewBag.comid)">@(ViewBag.pageId - i)</a></li>
+                }
+            }
+            @if (ViewBag.pageId != 1 && ViewBag.pageId != ViewBag.PageCount)
+            {
+                <li><a disabled onclick="changePage(@ViewBag.pageId,@ViewBag.comid)">@ViewBag.pageId</a></li>
+            }
+            @for (int i = 1; i <= 3; i++)
+            {
+                if (ViewBag.pageId + i < ViewBag.PageCount)
+                {
+                    <li><a onclick="changePage(@(ViewBag.pageId + i),@ViewBag.comid)">@(ViewBag.pageId + i)</a></li>
+                }
+            }
+            <li><a onclick="changePage(@ViewBag.PageCount,@ViewBag.comid)">صفحه آخر</a></li>
+        </ul>
+    </div>
+}
+<script>
+    function changePage(pageId, comid) {
+        $("#pageId").val(pageId);
+        $("#filterForm").submit();
+    }
+    function clr() {
+        $(".search").val("");
+        $("#filterForm").submit();
+    }
+</script>

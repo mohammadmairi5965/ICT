@@ -1,0 +1,93 @@
+﻿@model DataLayer.Deliver
+@using Utilities;
+
+@{
+    ViewBag.Title = "بازگشت تجهیز";
+}
+
+<h2>بازگشت تجهیز</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComputerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComputerID, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComputerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserID", null, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComputerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComputerName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComputerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DeliveryDate, DateConvertor.ToShamsiDateTime((DateTime)Model.DeliveryDate).Substring(0, 10), new { @class = "pdate form-control", placeholder = "انتخاب تاریخ", id = "pcal1", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (Model.ReturnDate == null)
+                {
+                    <span>
+                        @Html.TextBoxFor(model => model.ReturnDate, "", new { @class = "pdate form-control", placeholder = "انتخاب تاریخ", id = "pcal2", @readonly = "readonly" })
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        @Html.TextBoxFor(model => model.ReturnDate, @DateConvertor.ToShamsiDateTime((DateTime)Model.ReturnDate).Substring(0, 10), new { @class = "pdate form-control", placeholder = "انتخاب تاریخ", id = "pcal2" })
+                    </span>
+                }
+                @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ویرایش" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+    if (ViewBag.error == true)
+    {
+        <script>
+            alert("تاریخ بازگشت تجهیز باید بعد از تاریخ تحویل گرفتن ان باشد ");
+        </script>
+    }
+}
+@section scripts
+{
+    <script type="text/javascript">
+        var objCal1 = new AMIB.persianCalendar('pcal2', {
+            extraInputID: 'extra',
+            extraInputFormat: 'YYYY/MM/DD - yyyy/mm/dd - JD'
+        }
+        );
+    </script>
+}
+
+

@@ -1,0 +1,60 @@
+﻿@model DataLayer.Computer
+
+@{
+    ViewBag.Title = "حذف تجهیز";
+}
+
+<h2>حذف تجهیز</h2>
+
+<h3>آیا از حذف تجهیز مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit1.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit1.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmvalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmvalCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Serial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serial)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataLayer.WareHouse>
+
+@{
+    ViewBag.Title = "لیست  موجودی نبار";
+}
+
+    <h2>لیست  موجودی نبار</h2>
+
+
+<div class="table table-responsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tedad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hardware.Name)
+            </th>
+            @*<th></th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tedad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hardware.Name)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.WarehouseID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.WarehouseID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.WarehouseID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+</div>

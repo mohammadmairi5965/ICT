@@ -1,0 +1,78 @@
+﻿@model DataLayer.Deliver
+@using Utilities;
+
+@{
+    ViewBag.Title = "حذف عملیات تحویل";
+}
+
+<h2>حذف عملیات تحمل</h2>
+
+<h3>آیا از حذف عملیات مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+
+        <dd>
+
+            @DateConvertor.ToShamsiDateTime(Model.DeliveryDate).Substring(0, 10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+
+        <dd>
+            @if (Model.ReturnDate != null)
+            {
+                <span>
+                    @DateConvertor.ToShamsiDateTime((DateTime)Model.ReturnDate).Substring(0, 10)
+                </span>
+            }
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <input type="submit" value="حذف" class="btn btn-danger" />
+        </div>
+    }
+</div>

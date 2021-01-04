@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DataLayer.TypeOFService>
+
+@{
+    ViewBag.Title = "لیست نوع خدمات";
+}
+
+    <h2>لیست نوع خدمات</h2>
+<div class="form-group">
+    <p>
+        <a class="btn btn-success" href="/Admin/TypeOFServices/Create">نوع سرویس جدید</a>
+    </p>
+</div>
+
+
+<div class="table table-responsive">
+
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }) |
+                  
+                    @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

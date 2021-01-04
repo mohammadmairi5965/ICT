@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataLayer.ComputerHardware>
+
+
+
+<h3>کانفیگ سخت افزاری</h3>
+<div class="form-group">
+    <a class="btn btn-primary" href="/Admin/ComputerHardwares/Create/@ViewBag.q">افزودن قطعه</a>
+
+</div>
+<div class="table table-responsive">
+
+
+    <table class="table">
+        <tr>
+            <th>
+                نوع قطعه
+
+            </th>
+            <th>
+                نام قطعه
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hardware.HardwareType.Name)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hardware.Name)
+
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+</div>

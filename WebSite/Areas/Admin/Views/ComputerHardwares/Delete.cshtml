@@ -1,0 +1,48 @@
+﻿@model DataLayer.ComputerHardware
+
+@{
+    ViewBag.Title = "حذف سخت افزار از سیستم";
+}
+
+<h2>حذف سخت افزار از سیستم</h2>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+
+<h3>آیا از حذف سخت افزار از سیستم مطمئن هستید؟</h3>
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Computer.Computer_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hardware.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hardware.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

@@ -1,0 +1,1905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SoftwareReportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="Computer_ID" />
+          </Key>
+          <Property Name="Computer_ID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="unit" Type="int" Nullable="false" />
+          <Property Name="TypeOfComputer" Type="int" Nullable="false" />
+          <Property Name="AmvalCode" Type="nvarchar(max)" />
+          <Property Name="Serial" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ComputerHardware">
+          <Key>
+            <PropertyRef Name="ComputerHardwareID" />
+          </Key>
+          <Property Name="ComputerHardwareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComputerID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="HardwareID" Type="int" Nullable="false" />
+          <Property Name="AmvalCode" Type="nvarchar(max)" />
+          <Property Name="Serial" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ComputerSoftware">
+          <Key>
+            <PropertyRef Name="ComputerSoftwareID" />
+          </Key>
+          <Property Name="ComputerSoftwareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComputerID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="SoftwareID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComputerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SubUnitID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deliver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComputerID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ComputerName" Type="varchar" MaxLength="50" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="ReturnDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Disablement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DateOfDisablement" Type="date" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="ComputerID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="Descroption" Type="text" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ICTUser" Type="int" />
+          <Property Name="Priority" Type="int" />
+        </EntityType>
+        <EntityType Name="Hardware">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HardwareType">
+          <Key>
+            <PropertyRef Name="HardwareTypeID" />
+          </Key>
+          <Property Name="HardwareTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubArea" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Input">
+          <Key>
+            <PropertyRef Name="InputID" />
+          </Key>
+          <Property Name="InputID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FactorNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="InputDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InputDetail">
+          <Key>
+            <PropertyRef Name="InputDetailID" />
+          </Key>
+          <Property Name="InputDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InputID" Type="int" Nullable="false" />
+          <Property Name="HardwareID" Type="int" Nullable="false" />
+          <Property Name="Tedad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Output">
+          <Key>
+            <PropertyRef Name="OutputID" />
+          </Key>
+          <Property Name="OutputID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="InputDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OutputDetail">
+          <Key>
+            <PropertyRef Name="OutputDetailID" />
+          </Key>
+          <Property Name="OutputDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HardwareID" Type="int" Nullable="false" />
+          <Property Name="Tedad" Type="int" Nullable="false" />
+          <Property Name="OutputID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeriodicVisits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateOfService" Type="datetime" Nullable="false" />
+          <Property Name="Computer_ID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="SoftwareID" Type="int" Nullable="false" />
+          <Property Name="Action" Type="int" Nullable="false" />
+          <Property Name="DisablementID" Type="int" />
+          <Property Name="ICTUser" Type="int" Nullable="false" />
+          <Property Name="PeriodicVisitsID" Type="int" />
+          <Property Name="TypeOfServices" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Software">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Version" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SubUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeOFService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="tel" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonalImage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DomainUserName" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="ComputerID" />
+            <PropertyRef Name="PeriodicVisitsID" />
+          </Key>
+          <Property Name="ComputerID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="PeriodicVisitsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WareHouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HardwareID" Type="int" Nullable="false" />
+          <Property Name="Tedad" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SoftwareReport.dbo.DeliveryComputer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DeliveryComputer">
+          <Key>
+            <PropertyRef Name="Computer_ID" />
+            <PropertyRef Name="unit" />
+            <PropertyRef Name="TypeOfComputer" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="unitTitle" />
+          </Key>
+          <Property Name="Computer_ID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="unit" Type="int" Nullable="false" />
+          <Property Name="TypeOfComputer" Type="int" Nullable="false" />
+          <Property Name="AmvalCode" Type="nvarchar(max)" />
+          <Property Name="Serial" Type="nvarchar(max)" />
+          <Property Name="id" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ComputerName" Type="varchar" MaxLength="50" />
+          <Property Name="DeliveryDate" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="unitTitle" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ComputerHardware_tblComputer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="ComputerHardware" Type="Self.ComputerHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="ComputerHardware">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerHardware_tblHardware">
+          <End Role="Hardware" Type="Self.Hardware" Multiplicity="1" />
+          <End Role="ComputerHardware" Type="Self.ComputerHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerHardware">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerType_SubUnit">
+          <End Role="SubUnit" Type="Self.SubUnit" Multiplicity="1" />
+          <End Role="ComputerType" Type="Self.ComputerType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerType">
+              <PropertyRef Name="SubUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Computer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Input_tblUser">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Input" Type="Self.Input" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Input">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InputDetail_Input">
+          <End Role="Input" Type="Self.Input" Multiplicity="1" />
+          <End Role="InputDetail" Type="Self.InputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Input">
+              <PropertyRef Name="InputID" />
+            </Principal>
+            <Dependent Role="InputDetail">
+              <PropertyRef Name="InputID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InputDetail_tblHardware">
+          <End Role="Hardware" Type="Self.Hardware" Multiplicity="1" />
+          <End Role="InputDetail" Type="Self.InputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InputDetail">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutputDetail_Output">
+          <End Role="Output" Type="Self.Output" Multiplicity="1" />
+          <End Role="OutputDetail" Type="Self.OutputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Output">
+              <PropertyRef Name="OutputID" />
+            </Principal>
+            <Dependent Role="OutputDetail">
+              <PropertyRef Name="OutputID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutputDetail_tblHardware">
+          <End Role="Hardware" Type="Self.Hardware" Multiplicity="1" />
+          <End Role="OutputDetail" Type="Self.OutputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OutputDetail">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="ICTUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceImage_ServiceImage">
+          <End Role="service" Type="Self.service" Multiplicity="1" />
+          <End Role="ServiceImage" Type="Self.ServiceImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceImage">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblAction">
+          <End Role="Action" Type="Self.Action" Multiplicity="1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="Action" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblComputer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="Computer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblDisablement">
+          <End Role="Disablement" Type="Self.Disablement" Multiplicity="0..1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disablement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="DisablementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblPeriodicVisits">
+          <End Role="PeriodicVisits" Type="Self.PeriodicVisits" Multiplicity="0..1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodicVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="PeriodicVisitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblSoftware">
+          <End Role="Software" Type="Self.Software" Multiplicity="1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="SoftwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblTypeOFService">
+          <End Role="TypeOFService" Type="Self.TypeOFService" Multiplicity="1" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOFService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="TypeOfServices" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputer_tblComputerType">
+          <End Role="ComputerType" Type="Self.ComputerType" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="TypeOfComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputer_tblUnit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputerSoftware_tblComputer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="ComputerSoftware" Type="Self.ComputerSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="ComputerSoftware">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputerSoftware_tblSoftware">
+          <End Role="Software" Type="Self.Software" Multiplicity="1" />
+          <End Role="ComputerSoftware" Type="Self.ComputerSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerSoftware">
+              <PropertyRef Name="SoftwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblComputer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="Disablement" Type="Self.Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Disablement" Type="Self.Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="ICTUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblUser1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Disablement" Type="Self.Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHardware_HardwareType">
+          <End Role="HardwareType" Type="Self.HardwareType" Multiplicity="1" />
+          <End Role="Hardware" Type="Self.Hardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HardwareType">
+              <PropertyRef Name="HardwareTypeID" />
+            </Principal>
+            <Dependent Role="Hardware">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVisits_tblComputer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVisits_tblPeriodicVisits">
+          <End Role="PeriodicVisits" Type="Self.PeriodicVisits" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodicVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="PeriodicVisitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WareHouse_tblHardware">
+          <End Role="Hardware" Type="Self.Hardware" Multiplicity="1" />
+          <End Role="WareHouse" Type="Self.WareHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WareHouse">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoftwareReportModelStoreContainer">
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComputerHardware" EntityType="Self.ComputerHardware" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComputerSoftware" EntityType="Self.ComputerSoftware" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComputerType" EntityType="Self.ComputerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deliver" EntityType="Self.Deliver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disablement" EntityType="Self.Disablement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hardware" EntityType="Self.Hardware" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HardwareType" EntityType="Self.HardwareType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Input" EntityType="Self.Input" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InputDetail" EntityType="Self.InputDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Output" EntityType="Self.Output" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutputDetail" EntityType="Self.OutputDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodicVisits" EntityType="Self.PeriodicVisits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceImage" EntityType="Self.ServiceImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubUnit" EntityType="Self.SubUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOFService" EntityType="Self.TypeOFService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WareHouse" EntityType="Self.WareHouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryComputer" EntityType="Self.DeliveryComputer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DeliveryComputer].[Computer_ID] AS [Computer_ID], 
+    [DeliveryComputer].[unit] AS [unit], 
+    [DeliveryComputer].[TypeOfComputer] AS [TypeOfComputer], 
+    [DeliveryComputer].[AmvalCode] AS [AmvalCode], 
+    [DeliveryComputer].[Serial] AS [Serial], 
+    [DeliveryComputer].[id] AS [id], 
+    [DeliveryComputer].[UserID] AS [UserID], 
+    [DeliveryComputer].[ComputerName] AS [ComputerName], 
+    [DeliveryComputer].[DeliveryDate] AS [DeliveryDate], 
+    [DeliveryComputer].[ReturnDate] AS [ReturnDate], 
+    [DeliveryComputer].[UserName] AS [UserName], 
+    [DeliveryComputer].[Name] AS [Name], 
+    [DeliveryComputer].[Title] AS [Title], 
+    [DeliveryComputer].[unitTitle] AS [unitTitle]
+    FROM [dbo].[DeliveryComputer] AS [DeliveryComputer]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ComputerHardware_tblComputer" Association="Self.FK_ComputerHardware_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerHardware" EntitySet="ComputerHardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerHardware_tblHardware" Association="Self.FK_ComputerHardware_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="ComputerHardware" EntitySet="ComputerHardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerType_SubUnit" Association="Self.FK_ComputerType_SubUnit">
+            <End Role="SubUnit" EntitySet="SubUnit" />
+            <End Role="ComputerType" EntitySet="ComputerType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Computer" Association="Self.FK_Deliver_Computer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_User" Association="Self.FK_Deliver_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Input_tblUser" Association="Self.FK_Input_tblUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Input" EntitySet="Input" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InputDetail_Input" Association="Self.FK_InputDetail_Input">
+            <End Role="Input" EntitySet="Input" />
+            <End Role="InputDetail" EntitySet="InputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InputDetail_tblHardware" Association="Self.FK_InputDetail_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="InputDetail" EntitySet="InputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutputDetail_Output" Association="Self.FK_OutputDetail_Output">
+            <End Role="Output" EntitySet="Output" />
+            <End Role="OutputDetail" EntitySet="OutputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutputDetail_tblHardware" Association="Self.FK_OutputDetail_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="OutputDetail" EntitySet="OutputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_User" Association="Self.FK_service_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceImage_ServiceImage" Association="Self.FK_ServiceImage_ServiceImage">
+            <End Role="service" EntitySet="service" />
+            <End Role="ServiceImage" EntitySet="ServiceImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblAction" Association="Self.FK_tbl_service_tblAction">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblComputer" Association="Self.FK_tbl_service_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblDisablement" Association="Self.FK_tbl_service_tblDisablement">
+            <End Role="Disablement" EntitySet="Disablement" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblPeriodicVisits" Association="Self.FK_tbl_service_tblPeriodicVisits">
+            <End Role="PeriodicVisits" EntitySet="PeriodicVisits" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblSoftware" Association="Self.FK_tbl_service_tblSoftware">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblTypeOFService" Association="Self.FK_tbl_service_tblTypeOFService">
+            <End Role="TypeOFService" EntitySet="TypeOFService" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputer_tblComputerType" Association="Self.FK_tblComputer_tblComputerType">
+            <End Role="ComputerType" EntitySet="ComputerType" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputer_tblUnit" Association="Self.FK_tblComputer_tblUnit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputerSoftware_tblComputer" Association="Self.FK_tblComputerSoftware_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerSoftware" EntitySet="ComputerSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputerSoftware_tblSoftware" Association="Self.FK_tblComputerSoftware_tblSoftware">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="ComputerSoftware" EntitySet="ComputerSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblComputer" Association="Self.FK_tblDisablement_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblUser" Association="Self.FK_tblDisablement_tblUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblUser1" Association="Self.FK_tblDisablement_tblUser1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHardware_HardwareType" Association="Self.FK_tblHardware_HardwareType">
+            <End Role="HardwareType" EntitySet="HardwareType" />
+            <End Role="Hardware" EntitySet="Hardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRole" Association="Self.FK_tblUser_tblRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVisits_tblComputer" Association="Self.FK_tblVisits_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVisits_tblPeriodicVisits" Association="Self.FK_tblVisits_tblPeriodicVisits">
+            <End Role="PeriodicVisits" EntitySet="PeriodicVisits" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WareHouse_tblHardware" Association="Self.FK_WareHouse_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="WareHouse" EntitySet="WareHouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SoftwareReportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SoftwareReportEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Action" EntityType="SoftwareReportModel.Action" />
+          <EntitySet Name="Computer" EntityType="SoftwareReportModel.Computer" />
+          <EntitySet Name="ComputerHardware" EntityType="SoftwareReportModel.ComputerHardware" />
+          <EntitySet Name="ComputerSoftware" EntityType="SoftwareReportModel.ComputerSoftware" />
+          <EntitySet Name="ComputerType" EntityType="SoftwareReportModel.ComputerType" />
+          <EntitySet Name="Disablement" EntityType="SoftwareReportModel.Disablement" />
+          <EntitySet Name="Hardware" EntityType="SoftwareReportModel.Hardware" />
+          <EntitySet Name="HardwareType" EntityType="SoftwareReportModel.HardwareType" />
+          <EntitySet Name="Input" EntityType="SoftwareReportModel.Input" />
+          <EntitySet Name="InputDetail" EntityType="SoftwareReportModel.InputDetail" />
+          <EntitySet Name="Output" EntityType="SoftwareReportModel.Output" />
+          <EntitySet Name="OutputDetail" EntityType="SoftwareReportModel.OutputDetail" />
+          <EntitySet Name="PeriodicVisits" EntityType="SoftwareReportModel.PeriodicVisits" />
+          <EntitySet Name="Role" EntityType="SoftwareReportModel.Role" />
+          <EntitySet Name="service" EntityType="SoftwareReportModel.service" />
+          <EntitySet Name="ServiceImage" EntityType="SoftwareReportModel.ServiceImage" />
+          <EntitySet Name="Software" EntityType="SoftwareReportModel.Software" />
+          <EntitySet Name="SubUnit" EntityType="SoftwareReportModel.SubUnit" />
+          <EntitySet Name="sysdiagrams" EntityType="SoftwareReportModel.sysdiagrams" />
+          <EntitySet Name="TypeOFService" EntityType="SoftwareReportModel.TypeOFService" />
+          <EntitySet Name="Unit" EntityType="SoftwareReportModel.Unit" />
+          <EntitySet Name="User" EntityType="SoftwareReportModel.User" />
+          <EntitySet Name="WareHouse" EntityType="SoftwareReportModel.WareHouse" />
+          <AssociationSet Name="FK_tbl_service_tblAction" Association="SoftwareReportModel.FK_tbl_service_tblAction">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerHardware_tblComputer" Association="SoftwareReportModel.FK_ComputerHardware_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerHardware" EntitySet="ComputerHardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblComputer" Association="SoftwareReportModel.FK_tbl_service_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputer_tblComputerType" Association="SoftwareReportModel.FK_tblComputer_tblComputerType">
+            <End Role="ComputerType" EntitySet="ComputerType" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputer_tblUnit" Association="SoftwareReportModel.FK_tblComputer_tblUnit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputerSoftware_tblComputer" Association="SoftwareReportModel.FK_tblComputerSoftware_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerSoftware" EntitySet="ComputerSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblComputer" Association="SoftwareReportModel.FK_tblDisablement_tblComputer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerHardware_tblHardware" Association="SoftwareReportModel.FK_ComputerHardware_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="ComputerHardware" EntitySet="ComputerHardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComputerSoftware_tblSoftware" Association="SoftwareReportModel.FK_tblComputerSoftware_tblSoftware">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="ComputerSoftware" EntitySet="ComputerSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblDisablement" Association="SoftwareReportModel.FK_tbl_service_tblDisablement">
+            <End Role="Disablement" EntitySet="Disablement" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblUser" Association="SoftwareReportModel.FK_tblDisablement_tblUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDisablement_tblUser1" Association="SoftwareReportModel.FK_tblDisablement_tblUser1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Disablement" EntitySet="Disablement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InputDetail_tblHardware" Association="SoftwareReportModel.FK_InputDetail_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="InputDetail" EntitySet="InputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutputDetail_tblHardware" Association="SoftwareReportModel.FK_OutputDetail_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="OutputDetail" EntitySet="OutputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHardware_HardwareType" Association="SoftwareReportModel.FK_tblHardware_HardwareType">
+            <End Role="HardwareType" EntitySet="HardwareType" />
+            <End Role="Hardware" EntitySet="Hardware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WareHouse_tblHardware" Association="SoftwareReportModel.FK_WareHouse_tblHardware">
+            <End Role="Hardware" EntitySet="Hardware" />
+            <End Role="WareHouse" EntitySet="WareHouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Input_tblUser" Association="SoftwareReportModel.FK_Input_tblUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Input" EntitySet="Input" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InputDetail_Input" Association="SoftwareReportModel.FK_InputDetail_Input">
+            <End Role="Input" EntitySet="Input" />
+            <End Role="InputDetail" EntitySet="InputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutputDetail_Output" Association="SoftwareReportModel.FK_OutputDetail_Output">
+            <End Role="Output" EntitySet="Output" />
+            <End Role="OutputDetail" EntitySet="OutputDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblPeriodicVisits" Association="SoftwareReportModel.FK_tbl_service_tblPeriodicVisits">
+            <End Role="PeriodicVisits" EntitySet="PeriodicVisits" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRole" Association="SoftwareReportModel.FK_tblUser_tblRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_User" Association="SoftwareReportModel.FK_service_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceImage_ServiceImage" Association="SoftwareReportModel.FK_ServiceImage_ServiceImage">
+            <End Role="service" EntitySet="service" />
+            <End Role="ServiceImage" EntitySet="ServiceImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblSoftware" Association="SoftwareReportModel.FK_tbl_service_tblSoftware">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_service_tblTypeOFService" Association="SoftwareReportModel.FK_tbl_service_tblTypeOFService">
+            <End Role="TypeOFService" EntitySet="TypeOFService" />
+            <End Role="service" EntitySet="service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubUnit_SubUnit" Association="SoftwareReportModel.FK_SubUnit_SubUnit">
+            <End Role="SubUnit" EntitySet="SubUnit" />
+            <End Role="SubUnit1" EntitySet="SubUnit" />
+          </AssociationSet>
+          <AssociationSet Name="Visits" Association="SoftwareReportModel.Visits">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="PeriodicVisits" EntitySet="PeriodicVisits" />
+          </AssociationSet>
+          <EntitySet Name="Deliver" EntityType="SoftwareReportModel.Deliver" />
+          <AssociationSet Name="FK_Deliver_Computer" Association="SoftwareReportModel.FK_Deliver_Computer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_User" Association="SoftwareReportModel.FK_Deliver_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerType_SubUnit" Association="SoftwareReportModel.FK_ComputerType_SubUnit">
+            <End Role="SubUnit" EntitySet="SubUnit" />
+            <End Role="ComputerType" EntitySet="ComputerType" />
+          </AssociationSet>
+          <EntitySet Name="DeliveryComputer" EntityType="SoftwareReportModel.DeliveryComputer" />
+        </EntityContainer>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblAction" FromRole="Action" ToRole="service" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="Computer_ID" />
+          </Key>
+          <Property Name="Computer_ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="unit" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfComputer" Type="Int32" Nullable="false" />
+          <Property Name="AmvalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ComputerHardware" Relationship="SoftwareReportModel.FK_ComputerHardware_tblComputer" FromRole="Computer" ToRole="ComputerHardware" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblComputer" FromRole="Computer" ToRole="service" />
+          <NavigationProperty Name="ComputerType" Relationship="SoftwareReportModel.FK_tblComputer_tblComputerType" FromRole="Computer" ToRole="ComputerType" />
+          <NavigationProperty Name="Unit1" Relationship="SoftwareReportModel.FK_tblComputer_tblUnit" FromRole="Computer" ToRole="Unit" />
+          <NavigationProperty Name="ComputerSoftware" Relationship="SoftwareReportModel.FK_tblComputerSoftware_tblComputer" FromRole="Computer" ToRole="ComputerSoftware" />
+          <NavigationProperty Name="Disablement" Relationship="SoftwareReportModel.FK_tblDisablement_tblComputer" FromRole="Computer" ToRole="Disablement" />
+          <NavigationProperty Name="PeriodicVisits" Relationship="SoftwareReportModel.Visits" FromRole="Computer" ToRole="PeriodicVisits" />
+          <NavigationProperty Name="Deliver" Relationship="SoftwareReportModel.FK_Deliver_Computer" FromRole="Computer" ToRole="Deliver" />
+        </EntityType>
+        <EntityType Name="ComputerHardware">
+          <Key>
+            <PropertyRef Name="ComputerHardwareID" />
+          </Key>
+          <Property Name="ComputerHardwareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComputerID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="HardwareID" Type="Int32" Nullable="false" />
+          <Property Name="AmvalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_ComputerHardware_tblComputer" FromRole="ComputerHardware" ToRole="Computer" />
+          <NavigationProperty Name="Hardware" Relationship="SoftwareReportModel.FK_ComputerHardware_tblHardware" FromRole="ComputerHardware" ToRole="Hardware" />
+        </EntityType>
+        <EntityType Name="ComputerSoftware">
+          <Key>
+            <PropertyRef Name="ComputerSoftwareID" />
+          </Key>
+          <Property Name="ComputerSoftwareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComputerID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="SoftwareID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_tblComputerSoftware_tblComputer" FromRole="ComputerSoftware" ToRole="Computer" />
+          <NavigationProperty Name="Software" Relationship="SoftwareReportModel.FK_tblComputerSoftware_tblSoftware" FromRole="ComputerSoftware" ToRole="Software" />
+        </EntityType>
+        <EntityType Name="ComputerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SubUnitID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_tblComputer_tblComputerType" FromRole="ComputerType" ToRole="Computer" />
+          <NavigationProperty Name="SubUnit" Relationship="SoftwareReportModel.FK_ComputerType_SubUnit" FromRole="ComputerType" ToRole="SubUnit" />
+        </EntityType>
+        <EntityType Name="Disablement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfDisablement" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="ComputerID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="Descroption" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ICTUser" Type="Int32" />
+          <Property Name="Priority" Type="Int32" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_tblDisablement_tblComputer" FromRole="Disablement" ToRole="Computer" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblDisablement" FromRole="Disablement" ToRole="service" />
+          <NavigationProperty Name="User" Relationship="SoftwareReportModel.FK_tblDisablement_tblUser" FromRole="Disablement" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="SoftwareReportModel.FK_tblDisablement_tblUser1" FromRole="Disablement" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Hardware">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComputerHardware" Relationship="SoftwareReportModel.FK_ComputerHardware_tblHardware" FromRole="Hardware" ToRole="ComputerHardware" />
+          <NavigationProperty Name="InputDetail" Relationship="SoftwareReportModel.FK_InputDetail_tblHardware" FromRole="Hardware" ToRole="InputDetail" />
+          <NavigationProperty Name="OutputDetail" Relationship="SoftwareReportModel.FK_OutputDetail_tblHardware" FromRole="Hardware" ToRole="OutputDetail" />
+          <NavigationProperty Name="HardwareType" Relationship="SoftwareReportModel.FK_tblHardware_HardwareType" FromRole="Hardware" ToRole="HardwareType" />
+          <NavigationProperty Name="WareHouse" Relationship="SoftwareReportModel.FK_WareHouse_tblHardware" FromRole="Hardware" ToRole="WareHouse" />
+        </EntityType>
+        <EntityType Name="HardwareType">
+          <Key>
+            <PropertyRef Name="HardwareTypeID" />
+          </Key>
+          <Property Name="HardwareTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubArea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hardware" Relationship="SoftwareReportModel.FK_tblHardware_HardwareType" FromRole="HardwareType" ToRole="Hardware" />
+        </EntityType>
+        <EntityType Name="Input">
+          <Key>
+            <PropertyRef Name="InputID" />
+          </Key>
+          <Property Name="InputID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FactorNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InputDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="User" Relationship="SoftwareReportModel.FK_Input_tblUser" FromRole="Input" ToRole="User" />
+          <NavigationProperty Name="InputDetail" Relationship="SoftwareReportModel.FK_InputDetail_Input" FromRole="Input" ToRole="InputDetail" />
+        </EntityType>
+        <EntityType Name="InputDetail">
+          <Key>
+            <PropertyRef Name="InputDetailID" />
+          </Key>
+          <Property Name="InputDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InputID" Type="Int32" Nullable="false" />
+          <Property Name="HardwareID" Type="Int32" Nullable="false" />
+          <Property Name="Tedad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hardware" Relationship="SoftwareReportModel.FK_InputDetail_tblHardware" FromRole="InputDetail" ToRole="Hardware" />
+          <NavigationProperty Name="Input" Relationship="SoftwareReportModel.FK_InputDetail_Input" FromRole="InputDetail" ToRole="Input" />
+        </EntityType>
+        <EntityType Name="Output">
+          <Key>
+            <PropertyRef Name="OutputID" />
+          </Key>
+          <Property Name="OutputID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InputDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="OutputDetail" Relationship="SoftwareReportModel.FK_OutputDetail_Output" FromRole="Output" ToRole="OutputDetail" />
+        </EntityType>
+        <EntityType Name="OutputDetail">
+          <Key>
+            <PropertyRef Name="OutputDetailID" />
+          </Key>
+          <Property Name="OutputDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HardwareID" Type="Int32" Nullable="false" />
+          <Property Name="Tedad" Type="Int32" Nullable="false" />
+          <Property Name="OutputID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hardware" Relationship="SoftwareReportModel.FK_OutputDetail_tblHardware" FromRole="OutputDetail" ToRole="Hardware" />
+          <NavigationProperty Name="Output" Relationship="SoftwareReportModel.FK_OutputDetail_Output" FromRole="OutputDetail" ToRole="Output" />
+        </EntityType>
+        <EntityType Name="PeriodicVisits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblPeriodicVisits" FromRole="PeriodicVisits" ToRole="service" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.Visits" FromRole="PeriodicVisits" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="SoftwareReportModel.FK_tblUser_tblRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateOfService" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Computer_ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="SoftwareID" Type="Int32" Nullable="false" />
+          <Property Name="Action" Type="Int32" Nullable="false" />
+          <Property Name="DisablementID" Type="Int32" />
+          <Property Name="ICTUser" Type="Int32" Nullable="false" />
+          <Property Name="PeriodicVisitsID" Type="Int32" />
+          <Property Name="TypeOfServices" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Action1" Relationship="SoftwareReportModel.FK_tbl_service_tblAction" FromRole="service" ToRole="Action" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_tbl_service_tblComputer" FromRole="service" ToRole="Computer" />
+          <NavigationProperty Name="Disablement" Relationship="SoftwareReportModel.FK_tbl_service_tblDisablement" FromRole="service" ToRole="Disablement" />
+          <NavigationProperty Name="PeriodicVisits" Relationship="SoftwareReportModel.FK_tbl_service_tblPeriodicVisits" FromRole="service" ToRole="PeriodicVisits" />
+          <NavigationProperty Name="User" Relationship="SoftwareReportModel.FK_service_User" FromRole="service" ToRole="User" />
+          <NavigationProperty Name="ServiceImage" Relationship="SoftwareReportModel.FK_ServiceImage_ServiceImage" FromRole="service" ToRole="ServiceImage" />
+          <NavigationProperty Name="Software" Relationship="SoftwareReportModel.FK_tbl_service_tblSoftware" FromRole="service" ToRole="Software" />
+          <NavigationProperty Name="TypeOFService" Relationship="SoftwareReportModel.FK_tbl_service_tblTypeOFService" FromRole="service" ToRole="TypeOFService" />
+        </EntityType>
+        <EntityType Name="ServiceImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_ServiceImage_ServiceImage" FromRole="ServiceImage" ToRole="service" />
+        </EntityType>
+        <EntityType Name="Software">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ComputerSoftware" Relationship="SoftwareReportModel.FK_tblComputerSoftware_tblSoftware" FromRole="Software" ToRole="ComputerSoftware" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblSoftware" FromRole="Software" ToRole="service" />
+        </EntityType>
+        <EntityType Name="SubUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubUnit1" Relationship="SoftwareReportModel.FK_SubUnit_SubUnit" FromRole="SubUnit" ToRole="SubUnit1" />
+          <NavigationProperty Name="SubUnit2" Relationship="SoftwareReportModel.FK_SubUnit_SubUnit" FromRole="SubUnit1" ToRole="SubUnit" />
+          <NavigationProperty Name="ComputerType" Relationship="SoftwareReportModel.FK_ComputerType_SubUnit" FromRole="SubUnit" ToRole="ComputerType" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeOFService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_tbl_service_tblTypeOFService" FromRole="TypeOFService" ToRole="service" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_tblComputer_tblUnit" FromRole="Unit" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonalImage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DomainUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Disablement" Relationship="SoftwareReportModel.FK_tblDisablement_tblUser" FromRole="User" ToRole="Disablement" />
+          <NavigationProperty Name="Disablement1" Relationship="SoftwareReportModel.FK_tblDisablement_tblUser1" FromRole="User" ToRole="Disablement" />
+          <NavigationProperty Name="Input" Relationship="SoftwareReportModel.FK_Input_tblUser" FromRole="User" ToRole="Input" />
+          <NavigationProperty Name="Role" Relationship="SoftwareReportModel.FK_tblUser_tblRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="service" Relationship="SoftwareReportModel.FK_service_User" FromRole="User" ToRole="service" />
+          <NavigationProperty Name="Deliver" Relationship="SoftwareReportModel.FK_Deliver_User" FromRole="User" ToRole="Deliver" />
+        </EntityType>
+        <EntityType Name="WareHouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HardwareID" Type="Int32" Nullable="false" />
+          <Property Name="Tedad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hardware" Relationship="SoftwareReportModel.FK_WareHouse_tblHardware" FromRole="WareHouse" ToRole="Hardware" />
+        </EntityType>
+        <Association Name="FK_tbl_service_tblAction">
+          <End Type="SoftwareReportModel.Action" Role="Action" Multiplicity="1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="Action" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerHardware_tblComputer">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ComputerHardware" Role="ComputerHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="ComputerHardware">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblComputer">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="Computer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputer_tblComputerType">
+          <End Type="SoftwareReportModel.ComputerType" Role="ComputerType" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="TypeOfComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputer_tblUnit">
+          <End Type="SoftwareReportModel.Unit" Role="Unit" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputerSoftware_tblComputer">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ComputerSoftware" Role="ComputerSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="ComputerSoftware">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblComputer">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Disablement" Role="Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerHardware_tblHardware">
+          <End Type="SoftwareReportModel.Hardware" Role="Hardware" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ComputerHardware" Role="ComputerHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerHardware">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComputerSoftware_tblSoftware">
+          <End Type="SoftwareReportModel.Software" Role="Software" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ComputerSoftware" Role="ComputerSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerSoftware">
+              <PropertyRef Name="SoftwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblDisablement">
+          <End Type="SoftwareReportModel.Disablement" Role="Disablement" Multiplicity="0..1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disablement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="DisablementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblUser">
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SoftwareReportModel.Disablement" Role="Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="ICTUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDisablement_tblUser1">
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Disablement" Role="Disablement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Disablement">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InputDetail_tblHardware">
+          <End Type="SoftwareReportModel.Hardware" Role="Hardware" Multiplicity="1" />
+          <End Type="SoftwareReportModel.InputDetail" Role="InputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InputDetail">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutputDetail_tblHardware">
+          <End Type="SoftwareReportModel.Hardware" Role="Hardware" Multiplicity="1" />
+          <End Type="SoftwareReportModel.OutputDetail" Role="OutputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OutputDetail">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHardware_HardwareType">
+          <End Type="SoftwareReportModel.HardwareType" Role="HardwareType" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Hardware" Role="Hardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HardwareType">
+              <PropertyRef Name="HardwareTypeID" />
+            </Principal>
+            <Dependent Role="Hardware">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WareHouse_tblHardware">
+          <End Type="SoftwareReportModel.Hardware" Role="Hardware" Multiplicity="1" />
+          <End Type="SoftwareReportModel.WareHouse" Role="WareHouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hardware">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WareHouse">
+              <PropertyRef Name="HardwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Input_tblUser">
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Input" Role="Input" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Input">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InputDetail_Input">
+          <End Type="SoftwareReportModel.Input" Role="Input" Multiplicity="1" />
+          <End Type="SoftwareReportModel.InputDetail" Role="InputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Input">
+              <PropertyRef Name="InputID" />
+            </Principal>
+            <Dependent Role="InputDetail">
+              <PropertyRef Name="InputID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutputDetail_Output">
+          <End Type="SoftwareReportModel.Output" Role="Output" Multiplicity="1" />
+          <End Type="SoftwareReportModel.OutputDetail" Role="OutputDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Output">
+              <PropertyRef Name="OutputID" />
+            </Principal>
+            <Dependent Role="OutputDetail">
+              <PropertyRef Name="OutputID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblPeriodicVisits">
+          <End Type="SoftwareReportModel.PeriodicVisits" Role="PeriodicVisits" Multiplicity="0..1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodicVisits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="PeriodicVisitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRole">
+          <End Type="SoftwareReportModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_User">
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="ICTUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceImage_ServiceImage">
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ServiceImage" Role="ServiceImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceImage">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblSoftware">
+          <End Type="SoftwareReportModel.Software" Role="Software" Multiplicity="1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="SoftwareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_service_tblTypeOFService">
+          <End Type="SoftwareReportModel.TypeOFService" Role="TypeOFService" Multiplicity="1" />
+          <End Type="SoftwareReportModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOFService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="TypeOfServices" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubUnit_SubUnit">
+          <End Type="SoftwareReportModel.SubUnit" Role="SubUnit" Multiplicity="1" />
+          <End Type="SoftwareReportModel.SubUnit" Role="SubUnit1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SubUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubUnit1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Visits">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="*" />
+          <End Type="SoftwareReportModel.PeriodicVisits" Role="PeriodicVisits" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Deliver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComputerID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ComputerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Computer" Relationship="SoftwareReportModel.FK_Deliver_Computer" FromRole="Deliver" ToRole="Computer" />
+          <NavigationProperty Name="User" Relationship="SoftwareReportModel.FK_Deliver_User" FromRole="Deliver" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Deliver_Computer">
+          <End Type="SoftwareReportModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Deliver" Role="Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="Computer_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_User">
+          <End Type="SoftwareReportModel.User" Role="User" Multiplicity="1" />
+          <End Type="SoftwareReportModel.Deliver" Role="Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerType_SubUnit">
+          <End Type="SoftwareReportModel.SubUnit" Role="SubUnit" Multiplicity="1" />
+          <End Type="SoftwareReportModel.ComputerType" Role="ComputerType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerType">
+              <PropertyRef Name="SubUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DeliveryComputer">
+          <Key>
+            <PropertyRef Name="Computer_ID" />
+            <PropertyRef Name="unit" />
+            <PropertyRef Name="TypeOfComputer" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="unitTitle" />
+          </Key>
+          <Property Name="Computer_ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="unit" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfComputer" Type="Int32" Nullable="false" />
+          <Property Name="AmvalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ComputerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="unitTitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SoftwareReportModelStoreContainer" CdmEntityContainer="SoftwareReportEntities">
+          <EntitySetMapping Name="Action">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Computer">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="AmvalCode" ColumnName="AmvalCode" />
+                <ScalarProperty Name="TypeOfComputer" ColumnName="TypeOfComputer" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="Computer_ID" ColumnName="Computer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComputerHardware">
+            <EntityTypeMapping TypeName="SoftwareReportModel.ComputerHardware">
+              <MappingFragment StoreEntitySet="ComputerHardware">
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="AmvalCode" ColumnName="AmvalCode" />
+                <ScalarProperty Name="HardwareID" ColumnName="HardwareID" />
+                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
+                <ScalarProperty Name="ComputerHardwareID" ColumnName="ComputerHardwareID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComputerSoftware">
+            <EntityTypeMapping TypeName="SoftwareReportModel.ComputerSoftware">
+              <MappingFragment StoreEntitySet="ComputerSoftware">
+                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
+                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
+                <ScalarProperty Name="ComputerSoftwareID" ColumnName="ComputerSoftwareID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComputerType">
+            <EntityTypeMapping TypeName="SoftwareReportModel.ComputerType">
+              <MappingFragment StoreEntitySet="ComputerType">
+                <ScalarProperty Name="SubUnitID" ColumnName="SubUnitID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disablement">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Disablement">
+              <MappingFragment StoreEntitySet="Disablement">
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ICTUser" ColumnName="ICTUser" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Descroption" ColumnName="Descroption" />
+                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="DateOfDisablement" ColumnName="DateOfDisablement" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hardware">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Hardware">
+              <MappingFragment StoreEntitySet="Hardware">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HardwareType">
+            <EntityTypeMapping TypeName="SoftwareReportModel.HardwareType">
+              <MappingFragment StoreEntitySet="HardwareType">
+                <ScalarProperty Name="SubArea" ColumnName="SubArea" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HardwareTypeID" ColumnName="HardwareTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Input">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Input">
+              <MappingFragment StoreEntitySet="Input">
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FactorNo" ColumnName="FactorNo" />
+                <ScalarProperty Name="InputID" ColumnName="InputID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputDetail">
+            <EntityTypeMapping TypeName="SoftwareReportModel.InputDetail">
+              <MappingFragment StoreEntitySet="InputDetail">
+                <ScalarProperty Name="Tedad" ColumnName="Tedad" />
+                <ScalarProperty Name="HardwareID" ColumnName="HardwareID" />
+                <ScalarProperty Name="InputID" ColumnName="InputID" />
+                <ScalarProperty Name="InputDetailID" ColumnName="InputDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Output">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Output">
+              <MappingFragment StoreEntitySet="Output">
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OutputID" ColumnName="OutputID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutputDetail">
+            <EntityTypeMapping TypeName="SoftwareReportModel.OutputDetail">
+              <MappingFragment StoreEntitySet="OutputDetail">
+                <ScalarProperty Name="OutputID" ColumnName="OutputID" />
+                <ScalarProperty Name="Tedad" ColumnName="Tedad" />
+                <ScalarProperty Name="HardwareID" ColumnName="HardwareID" />
+                <ScalarProperty Name="OutputDetailID" ColumnName="OutputDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodicVisits">
+            <EntityTypeMapping TypeName="SoftwareReportModel.PeriodicVisits">
+              <MappingFragment StoreEntitySet="PeriodicVisits">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service">
+            <EntityTypeMapping TypeName="SoftwareReportModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="TypeOfServices" ColumnName="TypeOfServices" />
+                <ScalarProperty Name="PeriodicVisitsID" ColumnName="PeriodicVisitsID" />
+                <ScalarProperty Name="ICTUser" ColumnName="ICTUser" />
+                <ScalarProperty Name="DisablementID" ColumnName="DisablementID" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
+                <ScalarProperty Name="Computer_ID" ColumnName="Computer_ID" />
+                <ScalarProperty Name="dateOfService" ColumnName="dateOfService" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceImage">
+            <EntityTypeMapping TypeName="SoftwareReportModel.ServiceImage">
+              <MappingFragment StoreEntitySet="ServiceImage">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Software">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Software">
+              <MappingFragment StoreEntitySet="Software">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubUnit">
+            <EntityTypeMapping TypeName="SoftwareReportModel.SubUnit">
+              <MappingFragment StoreEntitySet="SubUnit">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SoftwareReportModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOFService">
+            <EntityTypeMapping TypeName="SoftwareReportModel.TypeOFService">
+              <MappingFragment StoreEntitySet="TypeOFService">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SoftwareReportModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DomainUserName" ColumnName="DomainUserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PersonalImage" ColumnName="PersonalImage" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WareHouse">
+            <EntityTypeMapping TypeName="SoftwareReportModel.WareHouse">
+              <MappingFragment StoreEntitySet="WareHouse">
+                <ScalarProperty Name="Tedad" ColumnName="Tedad" />
+                <ScalarProperty Name="HardwareID" ColumnName="HardwareID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Visits" TypeName="SoftwareReportModel.Visits" StoreEntitySet="Visits">
+            <EndProperty Name="PeriodicVisits">
+              <ScalarProperty Name="ID" ColumnName="PeriodicVisitsID" />
+            </EndProperty>
+            <EndProperty Name="Computer">
+              <ScalarProperty Name="Computer_ID" ColumnName="ComputerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Deliver">
+            <EntityTypeMapping TypeName="SoftwareReportModel.Deliver">
+              <MappingFragment StoreEntitySet="Deliver">
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryComputer">
+            <EntityTypeMapping TypeName="SoftwareReportModel.DeliveryComputer">
+              <MappingFragment StoreEntitySet="DeliveryComputer">
+                <ScalarProperty Name="unitTitle" ColumnName="unitTitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="AmvalCode" ColumnName="AmvalCode" />
+                <ScalarProperty Name="TypeOfComputer" ColumnName="TypeOfComputer" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="Computer_ID" ColumnName="Computer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

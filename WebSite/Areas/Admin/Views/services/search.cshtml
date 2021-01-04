@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DataLayer.service>
+@using Utilities;
+
+<div class="col-md-6">
+    <h3>سرویس های انجام شده</h3>
+    <div class="form-group">
+        @*@Html.ActionLink("سرویس جدید", "/Create", new { @id = ViewBag.q ,})*@
+        <a class="btn btn-primary" href="/Admin/Services/Create/@ViewBag.q">سرویس جدید</a>
+    </div>
+    <div class="table table-responsive">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.dateOfService)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ICTUser)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Action1.Title)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Software.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TypeOfServices)
+                </th>
+               
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @DateConvertor.ToShamsiDateTime(item.dateOfService)
+                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Action1.Title)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Software.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeOFService.Title)
+                    </td>
+                   
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
+  <div class="col-md-6">
+    @Html.Action("Computerhardware", "Computers" , new {@q= ViewBag.q })
+</div>

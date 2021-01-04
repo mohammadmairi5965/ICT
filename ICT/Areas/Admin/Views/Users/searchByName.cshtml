@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DataLayer.User>
+
+@{
+    ViewBag.Title = "جستجو بر حسب نام";
+    ViewBag.Description = "جستجو بر حسب نام";
+
+}
+
+<h2>جستجو بر حسب نام</h2>
+<div>
+    <form action="/Admin/Users/searchByName">
+        <input type="text" class="form-control search" placeholder="نام یا کد پرسنل" name="uname">
+        <input type="hidden" value="جستجو" />
+    </form>
+
+</div>
+
+<div class="table table-responsive">
+
+
+    <table class="table">
+        <tr>
+            <th>ردیف</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>نام و نام خانوادگی</th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role.RoleTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DomainUserName)
+            </th>
+            <th></th>
+        </tr>
+
+        @{
+
+            int i = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.RoleTitle)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DomainUserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.userID }) |
+                        @Html.ActionLink("نمایش", "Details", new { id = item.userID }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.userID })
+                    </td>
+                </tr>
+                i++;
+            }
+
+        }
+
+
+
+    </table>
+
+</div>
+
+
+<div>
+    <a href="/Master/Users">مدیریت کاربران</a>
+</div>

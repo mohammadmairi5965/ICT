@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DataLayer.Output>
+
+@{
+    ViewBag.Title = "درخواست های خروجی";
+}
+
+    <h2>درخواست های خروجی</h2>
+
+@*<p>
+   <a class="btn btn-success" href="/Admin/Outputs/Create">خروجی جدید</a>
+</p>*@
+<div class="table table-responsive">
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InputDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputDate)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.OutputID }) |
+                    @Html.ActionLink("نمایش", "Details", new { id = item.OutputID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.OutputID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

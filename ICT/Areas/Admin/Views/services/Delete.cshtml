@@ -1,0 +1,79 @@
+﻿@model DataLayer.service
+@using Utilities;
+
+@{
+    ViewBag.Title = "حذف سرویس";
+}
+
+<h2>حذف سرویس</h2>
+
+<h3>آیا از حذف سرویس مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfService)
+        </dt>
+
+        <dd>
+            @DateConvertor.ToShamsiDateTime(Model.dateOfService).Substring(0, 10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ICTUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ICTUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Action1.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Action1.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Computer_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Computer.Computer_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Software.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Software.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOFService.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOFService.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

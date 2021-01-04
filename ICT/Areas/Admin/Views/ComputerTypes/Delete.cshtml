@@ -1,0 +1,44 @@
+﻿@model DataLayer.ComputerType
+
+@{
+    ViewBag.Title = "حذف نوع";
+}
+
+<h2>حذف نوع</h2>
+
+<h3>آیا از حذف نوع مطمئن هستید؟</h3>
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger">
+        حذف امکان پذیر نمی باشد
+    </div>
+}
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubUnitID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.SubUnit.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

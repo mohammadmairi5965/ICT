@@ -1,0 +1,25 @@
+﻿@model DataLayer.ComputerType
+
+@{
+    ViewBag.Title = "جزییات نوع";
+}
+
+    <h2>جزییات نوع</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.ID }) 
+  
+</p>

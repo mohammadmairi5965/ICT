@@ -1,0 +1,58 @@
+﻿<header>
+    <div class="container">
+        <div class="header">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-6 right-header">
+
+                    <div class=" logo row">
+                        <a href="/">
+                            <img src="/Content/image/zisco.png" alt="برنامه جامع واحد فناوری اطلاعات و ارتباطات" title=" برنامه جامع واحد فناوری اطلاعات و ارتباطات">
+                        </a>
+
+
+                        <h1 class="TitleInHeader ">برنامه جامع واحد فناوری اطلاعات و ارتباطات  </h1>
+                    </div>
+
+                </div>
+                <div class="col-12 col-lg-6 col-xl-6">
+                    <div class="left-header">
+                        <div class="account-login">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <i class="ni ni-circle-08"></i>
+                                <a href="/Account/ChangePassword">
+                                    @User.Identity.Name خوش آمدید
+                                </a>
+                                <span>/</span>
+                                <i class="ni ni-button-power"></i>
+                                <a href="/LogOff">
+                                    خروج
+                                </a>
+                            }
+                          
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            منو
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link " href="/">صفحه اصلی</a>
+                <a class="nav-item nav-link " href="/Admin">مدیریت سایت</a>
+              
+            </div>
+        </div>
+    </div>
+</nav>
+
+

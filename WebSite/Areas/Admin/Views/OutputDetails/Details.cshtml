@@ -1,0 +1,42 @@
+﻿@model DataLayer.OutputDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OutputDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hardware.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hardware.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Output.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Output.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OutputDetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

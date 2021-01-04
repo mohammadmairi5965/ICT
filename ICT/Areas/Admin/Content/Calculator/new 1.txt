@@ -1,0 +1,24 @@
+<div class="form-group">
+
+        <label class="control-label col-md-2">انتخاب تاریخ</label>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.InviteDate, "", new { @class = "pdate", placeholder = "انتخاب تاریخ", id = "pcal1", @readonly = "readonly" })
+            @*<img id="date_btn" src="/Content/Master/calculator/pcal.png" class="my-body-group-reserve-date-btn" style="vertical-align: top;" alt="تقویم" title="انتخاب تاریخ">*@
+            @*<input type="text" id="pcal1" name="InviteDate" class="pdate" disabled><br />*@
+            @*<a class="pcalBtn" href="#"></a>*@
+        </div>
+    </div>
+	
+	 <script type="text/javascript">
+        
+       
+        var objCal1 = new AMIB.persianCalendar('pcal1', {
+         
+            extraInputID: 'extra',
+            extraInputFormat: 'YYYY/MM/DD - yyyy/mm/dd - JD'
+        }
+        );
+        //$("#pcal1").val(objCal1);
+
+       
+    </script>
